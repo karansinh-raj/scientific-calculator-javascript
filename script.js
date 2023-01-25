@@ -46,7 +46,7 @@ class Calculator{
     signToggle(){
         let equationNumber = parseFloat(this.equation);
         if(equationNumber>0){
-            this.equation = -(equationNumber);
+            this.equation = Math.abs(equationNumber)*-1;
         }else{
             this.equation = Math.abs(equationNumber);
         }
