@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,500,0,0" />
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="main">
+
+        <div class="result-section">
+            <div class="equation" id="equation">
+                
+            </div>
+            <div class="output" id="output">
+                
+            </div>
+        </div>
+
+
+        <div class="upper-section">
+            <div class="row1">
+                <div>DEG</div>
+                <div>F-E</div>
+            </div>
+            <div class="row2">
+                <div>MC</div>
+                <div>MR</div>
+                <div>M+</div>
+                <div>M-</div>
+                <div>MS</div>
+            </div>
+            <div class="row3">
+                <div id="trigonometry-cell" class="trigonometry-cell">
+                    <div class="trigonometry-cell-button" id="trigonometry-cell-button"><span class="trigonometry-icon">&#9727;</span> Trigonometry <span class="material-symbols-outlined">expand_more</span></div>
+                    <div id="trigonometry-cell-content" class="trigonometry-cell-content">
+                        <div data-unary-operation="sin">sin</div>
+                        <div data-unary-operation="cos">cos</div>
+                        <div data-unary-operation="tan">tan</div>
+                        <div data-unary-operation="hyp">hyp</div>
+                        <div data-unary-operation="sec">sec</div>
+                        <div data-unary-operation="csc">csc</div>
+                        <div data-unary-operation="cot">cot</div>
+                    </div>
+                </div>
+                <div class="function-cell" class="function-cell">
+                    <div class="function-cell-button" id="function-cell-button"><span class="function-icon">&#402;</span> Function <span class="material-symbols-outlined">expand_more</span></div>
+                    <div id="function-cell-content" class="function-cell-content">
+                        <div data-direct-value="rand">rand</div>
+                        <div data-unary-operation="ceil">ceil</div>
+                        <div data-unary-operation="floor">floor</div>
+                        <div data-unary-operation="abs">|x|</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="lower-section">
+            <tr>
+                <td>
+                    <div id="power-cell" class="power-cell">
+                        <div class="power-cell-button" id="power-cell-button">2<sup>nd</sup></div>
+                        <div id="power-cell-content" class="power-cell-content">
+                            <div data-unary-operation="cube">x<sup>3</sup></div>
+                            <div data-unary-operation="2^">2<sup>x</sup></div>
+                            <div data-unary-operation="e^">e<sup>x</sup></div>
+                        </div>
+                    </div>
+                </td>
+                <td data-direct-value="pi">&Pi;</td>
+                <td data-direct-value="e">e</td>
+                <td id="all-clear-btn">C</td>
+                <td id="backspace-btn"><span class="material-symbols-outlined">backspace</span></td>
+            </tr>
+            <tr>
+                <td data-unary-operation="sqr">x<sup>2</sup></td>
+                <td data-unary-operation="1/">1/x</td>
+                <td data-unary-operation="abs">|x|</td>
+                <td data-unary-operation="exp">exp</td>
+                <td data-number="%">mod</td>
+            </tr>
+            <tr>
+                <td data-unary-operation="sqrt">&radic;</td>
+                <td data-number="(">(</td>
+                <td data-number=")">)</td>
+                <td data-unary-operation="!">n!</td>
+                <td data-number="/">&divide;</td>
+            </tr>
+            <tr>
+                <td data-operation="^">x<sup>y</sup></td>
+                <td data-number="7">7</td>
+                <td data-number="8">8</td>
+                <td data-number="9">9</td>
+                <td data-number="*">x</td>
+            </tr>
+            <tr>
+                <td data-unary-operation="10^">10<sup>x</sup></td>
+                <td data-number="4">4</td>
+                <td data-number="5">5</td>
+                <td data-number="6">6</td>
+                <td data-number="-">-</td>
+            </tr>
+            <tr>
+                <td data-unary-operation="log">log</td>
+                <td data-number="1">1</td>
+                <td data-number="2">2</td>
+                <td data-number="3">3</td>
+                <td data-number="+">+</td>
+            </tr>
+            <tr>
+                <td data-unary-operation="ln">ln</td>
+                <td id="sign-toggle-btn">+/-</td>
+                <td data-number="0">0</td>
+                <td data-number=".">.</td>
+                <td class="equal-btn" id="equal-btn">=</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

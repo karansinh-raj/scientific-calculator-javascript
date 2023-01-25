@@ -1,0 +1,283 @@
+/* colors variables */
+:root{
+    --primaryColor: #0067c0;
+    --primaryHoverColor: #0066c0da;
+
+    --backgroundColor: #f3f3f3;
+
+    --cardBackgroundColor: #f9f9f9;
+    --cardHoverBackgroundColor: #f9f9f99c;
+    --shadowColor: #c3c4c7;
+    --textColor: #000000;
+    --secondaryTextColor: #aaaaaa;
+}
+
+/* all elements */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* body style */
+body{
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--backgroundColor);
+}
+
+/* main container */
+.main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* start of result section */
+
+/* result container */
+.result-section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 1rem 3rem;
+}
+
+/* result column prev-operand section */
+.result-section .equation{
+    font-size: 2rem;
+    padding-right: 0.5rem;
+    color: var(--secondaryTextColor);
+}
+
+/* result column current-operand section */
+.result-section .output{
+    font-size: 4rem;
+    color: var(--textColor);
+}
+
+/* result column prev-operand after content (to handle empty values) */
+.equation::after{
+    content: '\200b';
+}
+
+/* result column current-operand after content (to handle empty values) */
+.output::after{
+    content: '\200b';
+}
+
+/* start of upper section */
+/* upper section container */
+.upper-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.upper-section .row1{
+    display: flex;
+    flex-direction: row;
+}
+
+.upper-section .row1 div{
+    padding: 1rem;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0rem 1rem;
+}
+
+.upper-section .row2{
+    display: flex;
+    flex-direction: row;
+}
+
+.upper-section .row2 div{
+    padding: 1rem;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0rem 1rem;
+}
+
+.upper-section .row3{
+    display: flex;
+    flex-direction: row;
+}
+
+.upper-section .row3 div{
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0rem 0.4rem;
+}
+
+.upper-section .row1 div:hover, .upper-section .row2 div:hover{
+    background-color: var(--shadowColor);
+}
+
+.upper-section .trigonometry-cell{
+    position: relative;
+    display: block;
+}
+
+/* upper section trigonometry button */
+.upper-section .trigonometry-cell-button{
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.upper-section .trigonometry-cell-content{
+    display: none;
+    position: absolute;
+    background-color: var(--backgroundColor);
+    width: 100%;
+    overflow: auto;
+    box-shadow: 1px 1px 1px 1px var(--shadowColor);
+    z-index: 1;
+}
+
+.upper-section .trigonometry-cell-content div{
+    text-align: center;
+    margin: 0.5rem 0.2rem;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.2rem;
+    background-color: var(--cardBackgroundColor);
+    box-shadow: 0.5px 0.5px 0.5px 0.5px var(--shadowColor);
+}
+
+.upper-section .trigonometry-cell-content div:hover{
+    background-color: var(--shadowColor);
+}
+
+.upper-section .function-cell{
+    position: relative;
+    display: block;
+}
+
+/* upper section function button */
+.upper-section .function-cell-button{
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.upper-section .function-cell-content{
+    display: none;
+    position: absolute;
+    background-color: var(--backgroundColor);
+    width: 100%;
+    overflow: auto;
+    box-shadow: 1px 1px 1px 1px var(--shadowColor);
+    z-index: 1;
+}
+
+.upper-section .function-cell-content div{
+    text-align: center;
+    margin: 0.5rem 0.2rem;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.2rem;
+    background-color: var(--cardBackgroundColor);
+    box-shadow: 0.5px 0.5px 0.5px 0.5px var(--shadowColor);
+}
+
+.upper-section .trigonometry-cell:hover{
+    background-color: var(--shadowColor);
+}
+
+.upper-section .function-cell:hover{
+    background-color: var(--shadowColor);
+}
+
+.upper-section .function-cell-content div:hover{
+    background-color: var(--shadowColor);
+}
+
+/* upper section trigonometry icon */
+.upper-section .trigonometry-icon{
+    font-size: 1.5rem;
+}
+
+/* upper section function icon */
+.upper-section .function-icon{
+    font-size: 1.5rem;
+}
+/* end of upper section */
+
+/* start of lower section */
+/* lower section container */
+.lower-section{
+    width: 100%;
+    border-spacing: 0.4rem;
+}
+
+/* lower section cell or button */
+.lower-section td{
+    width: calc(100%/5);
+    padding: 1.5rem;
+    background-color: var(--backgroundColor);
+    box-shadow: 0.5px 0.5px 0.5px 0.5px var(--shadowColor);
+    border-radius: 0.2rem;
+    text-align: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.lower-section td[data-number]{
+    background-color: var(--cardBackgroundColor);
+}
+
+/* lower section cell or button Hover */
+.lower-section td:hover{
+    background-color: var(--shadowColor);
+}
+
+.lower-section .power-cell{
+    position: relative;
+    display: block;
+}
+
+.lower-section .power-cell-content{
+    display: none;
+    position: absolute;
+    background-color: var(--backgroundColor);
+    width: 100%;
+    overflow: auto;
+    box-shadow: 1px 1px 1px 1px var(--shadowColor);
+}
+
+.lower-section .power-cell-content div{
+    text-align: center;
+    margin: 0.5rem 0.2rem;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.2rem;
+    background-color: var(--cardBackgroundColor);
+    box-shadow: 0.5px 0.5px 0.5px 0.5px var(--shadowColor);
+}
+
+.lower-section .power-cell-content div:hover{
+    background-color: var(--shadowColor);
+}
+
+/* lower section Equal cell or button */
+.lower-section .equal-btn{
+    background-color: var(--primaryColor);
+    color: var(--cardBackgroundColor);
+}
+
+/* lower section Equal cell or button Hover */
+.lower-section .equal-btn:hover{
+    background-color: var(--primaryHoverColor);
+}
+/* end of lower section */
