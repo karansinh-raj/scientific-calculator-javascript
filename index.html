@@ -5,34 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scientific Calculator</title>
+
+    <meta name="description" content="Scientific Calculator Demonstration">
+    <meta name="keywords" content="HTML, CSS, Simform, javascript, Scientific, Calculator">
+    <meta name="author" content="Karansinh Raj">
+
+    <!-- google icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,500,0,0" />
+
+    <!-- my custom styles -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- my custom javascript (Calculator logic) -->
     <script src="script.js" defer></script>
 </head>
 <body>
+
+    <!-- start of main container -->
     <div class="main">
 
+        <!-- result section container -->
         <div class="result-section">
-            <div class="equation" id="equation">
-                
-            </div>
-            <div class="output" id="output">
-                
-            </div>
+            <div class="equation" id="equation"></div>
+            <div class="output" id="output"></div>
         </div>
 
-
+        <!-- upper section container -->
         <div class="upper-section">
             <div class="row1">
-                <div>DEG</div>
-                <div>F-E</div>
+                <!-- <div>DEG</div> -->
+                <div id="fe-btn" class="fe-btn">F-E</div>
             </div>
             <div class="row2">
-                <div>MC</div>
-                <div>MR</div>
-                <div>M+</div>
-                <div>M-</div>
-                <div>MS</div>
+                <div id="mc-btn">MC</div>
+                <div id="mr-btn">MR</div>
+                <div id="mPlus-btn">M+</div>
+                <div id="mMinus-btn">M-</div>
+                <div id="ms-btn">MS</div>
             </div>
             <div class="row3">
                 <div id="trigonometry-cell" class="trigonometry-cell">
@@ -59,6 +68,7 @@
             </div>
         </div>
 
+        <!-- lower section container -->
         <table class="lower-section">
             <tr>
                 <td>
@@ -91,34 +101,35 @@
                 <td data-number="/">&divide;</td>
             </tr>
             <tr>
-                <td data-operation="^">x<sup>y</sup></td>
-                <td data-number="7">7</td>
-                <td data-number="8">8</td>
-                <td data-number="9">9</td>
+                <td data-number="**">x<sup>y</sup></td>
+                <td data-number="7" class="number">7</td>
+                <td data-number="8" class="number">8</td>
+                <td data-number="9" class="number">9</td>
                 <td data-number="*">x</td>
             </tr>
             <tr>
                 <td data-unary-operation="10^">10<sup>x</sup></td>
-                <td data-number="4">4</td>
-                <td data-number="5">5</td>
-                <td data-number="6">6</td>
+                <td data-number="4" class="number">4</td>
+                <td data-number="5" class="number">5</td>
+                <td data-number="6" class="number">6</td>
                 <td data-number="-">-</td>
             </tr>
             <tr>
                 <td data-unary-operation="log">log</td>
-                <td data-number="1">1</td>
-                <td data-number="2">2</td>
-                <td data-number="3">3</td>
+                <td data-number="1" class="number">1</td>
+                <td data-number="2" class="number">2</td>
+                <td data-number="3" class="number">3</td>
                 <td data-number="+">+</td>
             </tr>
             <tr>
                 <td data-unary-operation="ln">ln</td>
                 <td id="sign-toggle-btn">+/-</td>
-                <td data-number="0">0</td>
+                <td data-number="0" class="number">0</td>
                 <td data-number=".">.</td>
                 <td class="equal-btn" id="equal-btn">=</td>
             </tr>
         </table>
     </div>
+    <!-- end of main container -->
 </body>
 </html>

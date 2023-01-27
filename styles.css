@@ -6,6 +6,7 @@
     --backgroundColor: #f3f3f3;
 
     --cardBackgroundColor: #f9f9f9;
+    --cardSecondaryBackgroundColor: #f3f9fbb0;
     --cardHoverBackgroundColor: #f9f9f99c;
     --shadowColor: #c3c4c7;
     --textColor: #000000;
@@ -22,7 +23,10 @@
 /* body style */
 body{
     height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    font-family: Helvetica, sans-serif;
     background-color: var(--backgroundColor);
 }
 
@@ -80,11 +84,14 @@ body{
 
 .upper-section .row1 div{
     padding: 1rem;
-    border-radius: 0.2rem;
+    border-radius: 0.5rem;
     font-size: 1.2rem;
-    font-weight: bold;
     cursor: pointer;
     margin: 0rem 1rem;
+}
+
+.upper-section .row1 .fe-btn{
+    padding-bottom: 0.5rem;
 }
 
 .upper-section .row2{
@@ -94,9 +101,8 @@ body{
 
 .upper-section .row2 div{
     padding: 1rem;
-    border-radius: 0.2rem;
+    border-radius: 0.5rem;
     font-size: 1.2rem;
-    font-weight: bold;
     cursor: pointer;
     margin: 0rem 1rem;
 }
@@ -107,9 +113,8 @@ body{
 }
 
 .upper-section .row3 div{
-    border-radius: 0.2rem;
+    border-radius: 0.5rem;
     font-size: 1.2rem;
-    font-weight: bold;
     cursor: pointer;
     margin: 0rem 0.4rem;
 }
@@ -118,6 +123,7 @@ body{
     background-color: var(--shadowColor);
 }
 
+/* upper section trigonometry cell */
 .upper-section .trigonometry-cell{
     position: relative;
     display: block;
@@ -130,6 +136,7 @@ body{
     align-items: center;
 }
 
+/* upper section trigonometry cell content */
 .upper-section .trigonometry-cell-content{
     display: none;
     position: absolute;
@@ -140,21 +147,24 @@ body{
     z-index: 1;
 }
 
+/* upper section trigonometry cell content div */
 .upper-section .trigonometry-cell-content div{
     text-align: center;
     margin: 0.5rem 0.2rem;
     padding: 1rem;
     font-size: 1rem;
     font-weight: bold;
-    border-radius: 0.2rem;
+    border-radius: 0.5rem;
     background-color: var(--cardBackgroundColor);
     box-shadow: 0.5px 0.5px 0.5px 0.5px var(--shadowColor);
 }
 
+/* upper section trigonometry cell content div (Hover) */
 .upper-section .trigonometry-cell-content div:hover{
     background-color: var(--shadowColor);
 }
 
+/* upper section function cell */
 .upper-section .function-cell{
     position: relative;
     display: block;
@@ -167,6 +177,7 @@ body{
     align-items: center;
 }
 
+/* upper section function cell content */
 .upper-section .function-cell-content{
     display: none;
     position: absolute;
@@ -177,26 +188,30 @@ body{
     z-index: 1;
 }
 
+/* upper section function cell content div */
 .upper-section .function-cell-content div{
     text-align: center;
     margin: 0.5rem 0.2rem;
     padding: 1rem;
     font-size: 1rem;
     font-weight: bold;
-    border-radius: 0.2rem;
+    border-radius: 0.5rem;
     background-color: var(--cardBackgroundColor);
     box-shadow: 0.5px 0.5px 0.5px 0.5px var(--shadowColor);
 }
 
+/* upper section function cell content div (Hover) */
+.upper-section .function-cell-content div:hover{
+    background-color: var(--shadowColor);
+}
+
+/* upper section trigonometry cell content (Hover) */
 .upper-section .trigonometry-cell:hover{
     background-color: var(--shadowColor);
 }
 
+/* upper section function cell content (Hover) */
 .upper-section .function-cell:hover{
-    background-color: var(--shadowColor);
-}
-
-.upper-section .function-cell-content div:hover{
     background-color: var(--shadowColor);
 }
 
@@ -215,16 +230,16 @@ body{
 /* lower section container */
 .lower-section{
     width: 100%;
-    border-spacing: 0.4rem;
+    border-spacing: 0.5rem;
 }
 
 /* lower section cell or button */
 .lower-section td{
     width: calc(100%/5);
     padding: 1.5rem;
-    background-color: var(--backgroundColor);
-    box-shadow: 0.5px 0.5px 0.5px 0.5px var(--shadowColor);
-    border-radius: 0.2rem;
+    background-color: var(--cardSecondaryBackgroundColor);
+    box-shadow: 1px 1px 5px 0.1px var(--shadowColor);
+    border-radius: 0.5rem;
     text-align: center;
     justify-content: center;
     font-size: 1.5rem;
@@ -232,7 +247,7 @@ body{
     cursor: pointer;
 }
 
-.lower-section td[data-number]{
+.lower-section .number{
     background-color: var(--cardBackgroundColor);
 }
 
@@ -241,11 +256,13 @@ body{
     background-color: var(--shadowColor);
 }
 
+/* lower section power(2nd) cell */
 .lower-section .power-cell{
     position: relative;
     display: block;
 }
 
+/* lower section power(2nd) cell content */
 .lower-section .power-cell-content{
     display: none;
     position: absolute;
@@ -255,6 +272,7 @@ body{
     box-shadow: 1px 1px 1px 1px var(--shadowColor);
 }
 
+/* lower section power(2nd) cell content div */
 .lower-section .power-cell-content div{
     text-align: center;
     margin: 0.5rem 0.2rem;
@@ -266,6 +284,7 @@ body{
     box-shadow: 0.5px 0.5px 0.5px 0.5px var(--shadowColor);
 }
 
+/* lower section power(2nd) cell content div (Hover) */
 .lower-section .power-cell-content div:hover{
     background-color: var(--shadowColor);
 }
