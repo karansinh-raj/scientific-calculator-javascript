@@ -237,7 +237,7 @@ body{
 .lower-section td{
     width: calc(100%/5);
     padding: 1.5rem;
-    background-color: var(--cardSecondaryBackgroundColor);
+    background-color: var(--backgroundColor);
     box-shadow: 1px 1px 5px 0.1px var(--shadowColor);
     border-radius: 0.5rem;
     text-align: center;
