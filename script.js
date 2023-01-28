@@ -111,7 +111,7 @@ class Calculator{
         }
 
         // append number to equation
-        if(this.equation === 0 && !isNaN(number)){
+        if(this.equation === 0){
             this.equation = number;
         }else{
             this.equation += number;
