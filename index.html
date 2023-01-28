@@ -71,30 +71,21 @@
         <!-- lower section container -->
         <table class="lower-section">
             <tr>
-                <td>
-                    <div id="power-cell" class="power-cell">
-                        <div class="power-cell-button" id="power-cell-button">2<sup>nd</sup></div>
-                        <div id="power-cell-content" class="power-cell-content">
-                            <div data-unary-operation="cube">x<sup>3</sup></div>
-                            <div data-unary-operation="2^">2<sup>x</sup></div>
-                            <div data-unary-operation="e^">e<sup>x</sup></div>
-                        </div>
-                    </div>
-                </td>
+                <td id="power-cell">2<sup>nd</sup></td>
                 <td data-direct-value="pi">&Pi;</td>
                 <td data-direct-value="e">e</td>
                 <td id="all-clear-btn">C</td>
                 <td id="backspace-btn"><span class="material-symbols-outlined">backspace</span></td>
             </tr>
             <tr>
-                <td data-unary-operation="sqr">x<sup>2</sup></td>
+                <td id="sqrOrCube" data-unary-operation="sqr">x<sup>2</sup></td>
                 <td data-unary-operation="1/">1/x</td>
                 <td data-unary-operation="abs">|x|</td>
                 <td data-unary-operation="exp">exp</td>
                 <td data-number="%">mod</td>
             </tr>
             <tr>
-                <td data-unary-operation="sqrt">&radic;</td>
+                <td id="sqrtOrCuberoot" data-unary-operation="sqrt">&#8730;</td>
                 <td data-number="(">(</td>
                 <td data-number=")">)</td>
                 <td data-unary-operation="!">n!</td>
@@ -108,14 +99,14 @@
                 <td data-number="*">x</td>
             </tr>
             <tr>
-                <td data-unary-operation="10^">10<sup>x</sup></td>
+                <td id="10RaiseXOr2RaiseX" data-unary-operation="10^">10<sup>x</sup></td>
                 <td data-number="4" class="number">4</td>
                 <td data-number="5" class="number">5</td>
                 <td data-number="6" class="number">6</td>
                 <td data-number="-">-</td>
             </tr>
             <tr>
-                <td data-unary-operation="log">log</td>
+                <td id="logOrERaiseX" data-unary-operation="log">log</td>
                 <td data-number="1" class="number">1</td>
                 <td data-number="2" class="number">2</td>
                 <td data-number="3" class="number">3</td>

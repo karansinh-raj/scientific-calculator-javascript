@@ -19,16 +19,6 @@ functionCellButton.onclick = ()=>{
     }
 }
 
-// 2nd(button) dropdown
-const powerCellButton = document.getElementById('power-cell-button');
-powerCellButton.onclick = ()=>{
-    if(document.getElementById("power-cell-content").style.display==="block"){
-        document.getElementById("power-cell-content").style.display="none";
-    }else{
-        document.getElementById("power-cell-content").style.display="block";
-    }
-}
-
 // binding HTML buttons with JS vars
 const equationText = document.getElementById("equation");
 const outputText = document.getElementById("output");
@@ -48,6 +38,8 @@ const memoryPlusButton = document.getElementById('mPlus-btn');
 const memoryMinusButton = document.getElementById('mMinus-btn');
 const memoryClearButton = document.getElementById('mc-btn');
 
+const powerCellButton = document.getElementById('power-cell');
+
 // creating Calculator class
 class Calculator{
 
@@ -61,6 +53,10 @@ class Calculator{
         this.isDecimalLegal = true;
 
         this.feMode = false;
+        
+        this.powerMode = false;
+
+        this.isOperatorLegal = true;
 
         // result text init
         equationText.innerText = '';
@@ -93,9 +89,16 @@ class Calculator{
         // to prevent multiple zeroes
         if(this.equation === 0 && number === '0') return;
 
+        if((number === '+' || number === '-' || number === '*' || number === '/' || number === '%') && this.isOperatorLegal === false){
+            return;
+        }
+
         // to allow decimal digits after operator
-        if(number === '+' || number === '-' || number === '*' || number === '/' || number === '%'){
+        if((number === '+' || number === '-' || number === '*' || number === '/' || number === '%') && this.isOperatorLegal){
+            this.isOperatorLegal = false;
             this.isDecimalLegal = true;
+        }else{
+            this.isOperatorLegal = true;
         }
 
         // checking if decimal dot is allowed or not and, set to false to prevent multiple decimal dots
@@ -106,7 +109,6 @@ class Calculator{
                 this.isDecimalLegal = false;
             }
         }
-
 
         // append number to equation
         if(this.equation === 0 && !isNaN(number)){
@@ -214,6 +216,9 @@ class Calculator{
             case 'sqrt':
                 computation = Math.sqrt(current);
                 break;
+            case 'cuberoot':
+                computation = Math.cbrt(current);
+                break;
             case 'sqr':
                 computation = Math.pow(current,2);
                 break;
@@ -281,6 +286,7 @@ class Calculator{
     clear(){
         this.equation = 0;
         this.isDecimalLegal = true;
+        this.isOperatorLegal = true;
 
         equationText.innerText = '';
         outputText.innerText = this.equation;
@@ -292,6 +298,8 @@ class Calculator{
         if(this.equation===''){
             this.equation=0
         }
+        this.isDecimalLegal = true;
+        this.isOperatorLegal = true;
         outputText.textContent = this.equation;
     }
 }
@@ -339,6 +347,49 @@ feButton.onclick = ()=>{
         feButton.style.borderBottom = "2px solid var(--primaryColor)";
     }else{
         feButton.style.borderBottom = "none";
+    }
+}
+
+powerCellButton.onclick = ()=>{
+    turnOnPowerMode();
+    if(calculator.powerMode){
+        powerCellButton.style.backgroundColor = "var(--primaryColor)";
+        powerCellButton.style.color = "var(--cardBackgroundColor)";
+    }else{
+        powerCellButton.style.backgroundColor = "var(--cardSecondaryBackgroundColor)";
+        powerCellButton.style.color = "var(--textColor)";
+    }
+}
+
+function turnOnPowerMode(){
+    if(calculator.powerMode){
+        document.getElementById('sqrOrCube').setAttribute('data-unary-operation',"sqr");
+        document.getElementById('sqrOrCube').innerHTML = "x<sup>2</sup>";
+
+        document.getElementById('sqrtOrCuberoot').setAttribute('data-unary-operation',"sqrt");
+        document.getElementById('sqrtOrCuberoot').innerHTML = "&#8730;";
+
+        document.getElementById('10RaiseXOr2RaiseX').setAttribute('data-unary-operation',"10^");
+        document.getElementById('10RaiseXOr2RaiseX').innerHTML = "10<sup>x</sup>";
+
+        document.getElementById('logOrERaiseX').setAttribute('data-unary-operation',"log");
+        document.getElementById('logOrERaiseX').innerHTML = "log";
+
+        calculator.powerMode = false;
+    }else{
+        document.getElementById('sqrOrCube').setAttribute('data-unary-operation',"cube");
+        document.getElementById('sqrOrCube').innerHTML = "x<sup>3</sup>";
+
+        document.getElementById('sqrtOrCuberoot').setAttribute('data-unary-operation',"cuberoot");
+        document.getElementById('sqrtOrCuberoot').innerHTML = "&#8731;";
+
+        document.getElementById('10RaiseXOr2RaiseX').setAttribute('data-unary-operation',"2^");
+        document.getElementById('10RaiseXOr2RaiseX').innerHTML = "2<sup>x</sup>";
+
+        document.getElementById('logOrERaiseX').setAttribute('data-unary-operation',"e^");
+        document.getElementById('logOrERaiseX').innerHTML = "e<sup>x</sup>";
+
+        calculator.powerMode = true;
     }
 }
 

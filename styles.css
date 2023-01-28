@@ -75,6 +75,7 @@ body{
 .upper-section{
     display: flex;
     flex-direction: column;
+    user-select: none;
 }
 
 .upper-section .row1{
@@ -245,6 +246,7 @@ body{
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
+    user-select: none;
 }
 
 .lower-section .number{
@@ -253,39 +255,6 @@ body{
 
 /* lower section cell or button Hover */
 .lower-section td:hover{
-    background-color: var(--shadowColor);
-}
-
-/* lower section power(2nd) cell */
-.lower-section .power-cell{
-    position: relative;
-    display: block;
-}
-
-/* lower section power(2nd) cell content */
-.lower-section .power-cell-content{
-    display: none;
-    position: absolute;
-    background-color: var(--backgroundColor);
-    width: 100%;
-    overflow: auto;
-    box-shadow: 1px 1px 1px 1px var(--shadowColor);
-}
-
-/* lower section power(2nd) cell content div */
-.lower-section .power-cell-content div{
-    text-align: center;
-    margin: 0.5rem 0.2rem;
-    padding: 1rem;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 0.2rem;
-    background-color: var(--cardBackgroundColor);
-    box-shadow: 0.5px 0.5px 0.5px 0.5px var(--shadowColor);
-}
-
-/* lower section power(2nd) cell content div (Hover) */
-.lower-section .power-cell-content div:hover{
     background-color: var(--shadowColor);
 }
 
