@@ -479,3 +479,19 @@ window.onclick = function(event) {
         }
     }
 }
+
+// keyboard events
+window.addEventListener('keydown', (e)=>{
+    if ((e.key >= 0 && e.key <= 9) || (e.key === "+" || e.key === "-" || e.key === "*" ||e.key === "/" || e.key === "%" || e.key === ".")) { 
+        calculator.appendNumber(e.key);
+    }
+    if(e.key === "Enter"){
+        calculator.compute();
+    }
+    if(e.key === "Backspace"){
+        calculator.backspace();
+    }
+    if(e.key === "Escape"){
+        calculator.clear();
+    }
+});
