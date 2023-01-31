@@ -121,6 +121,10 @@ class Calculator{
             }
         }
 
+        if(number === ')' && !(this.equation.toString().includes('('))){
+            return;
+        }
+
         // append number to equation
         if(this.equation === 0){
             this.equation = number;
