@@ -61,6 +61,8 @@ class Calculator{
 
         this.degreeMode = false;
 
+        this.lastComputed = 0;
+
         // result text init
         equationText.innerText = '';
         outputText.innerText = this.equation;
@@ -88,9 +90,15 @@ class Calculator{
 
     // append newly added number to equation
     appendNumber(number){
-
         // to prevent multiple zeroes
         if(this.equation === 0 && number === '0') return;
+
+        if((number === '+' || number === '-' || number === '*' || number === '/' || number === '%') && this.lastComputed !== 0){
+            this.equation = this.lastComputed;
+            this.lastComputed = 0;
+        }else{
+            this.lastComputed = 0;
+        }
 
         if((number === '+' || number === '-' || number === '*' || number === '/' || number === '%') && this.isOperatorLegal === false){
             return;
@@ -131,12 +139,9 @@ class Calculator{
             let computation = eval(this.equation);
             equationText.innerText = `${this.equation} =`;
             outputText.innerText = computation;
+            this.lastComputed = computation;
+            this.equation = 0;
 
-            if(computation === Infinity){
-                this.equation = 0;
-            }else{
-                this.equation = computation;
-            }
         }catch(err){
             equationText.innerText = `${this.equation} =`;
             outputText.innerText = `Invalid expression`;
@@ -284,11 +289,8 @@ class Calculator{
         equationText.innerText = `${operation}(${this.equation}) =`;
         outputText.innerText = computation;
 
-        if(isNaN(computation) || computation === Infinity){
-            this.equation = 0;
-        }else{
-            this.equation = computation;
-        }
+        this.lastComputed = computation;
+        this.equation = 0;
     }
 
     // to print direct values of const like PI
@@ -307,6 +309,9 @@ class Calculator{
         }
         this.equation = computation;
         outputText.innerText = this.equation;
+
+        this.lastComputed = computation;
+        this.equation = 0;
     }
 
     // to clear all equation, output text

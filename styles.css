@@ -3,9 +3,9 @@
     --primaryColor: #0067c0;
     --primaryHoverColor: #0066c0da;
 
-    --backgroundColor: #f3f3f3;
+    --backgroundColor: #f2f2f2;
 
-    --cardBackgroundColor: #f9f9f9;
+    --cardBackgroundColor: #fdfdfd;
     --cardSecondaryBackgroundColor: #f3f9fbb0;
     --cardHoverBackgroundColor: #f9f9f99c;
     --shadowColor: #c3c4c7;
@@ -42,7 +42,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    padding: 1rem 3rem;
+    padding: 1rem 1rem;
 }
 
 /* result column prev-operand section */
@@ -238,12 +238,12 @@ body{
     text-align: center;
     justify-content: center;
     font-size: 1.5rem;
-    font-weight: bold;
     cursor: pointer;
     user-select: none;
 }
 
 .lower-section .number{
+    font-weight: bolder;
     background-color: var(--cardBackgroundColor);
 }
 
