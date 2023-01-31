@@ -32,6 +32,7 @@ const unaryOperationButtons = document.querySelectorAll("[data-unary-operation]"
 const directValueButtons = document.querySelectorAll("[data-direct-value]");
 
 const feButton = document.getElementById('fe-btn');
+const degButton = document.getElementById('deg-btn');
 const memoryStoreButton = document.getElementById('ms-btn');
 const memoryReadButton = document.getElementById('mr-btn');
 const memoryPlusButton = document.getElementById('mPlus-btn');
@@ -57,6 +58,8 @@ class Calculator{
         this.powerMode = false;
 
         this.isOperatorLegal = true;
+
+        this.degreeMode = false;
 
         // result text init
         equationText.innerText = '';
@@ -163,25 +166,49 @@ class Calculator{
         switch(operation){
             // trigonometry
             case 'sin':
-                computation = Math.sin(current);
+                if(this.degreeMode){
+                    computation = Math.sin(current*Math.PI/180);
+                }else{
+                    computation = Math.sin(current);
+                }
                 break;
             case 'cos':
-                computation = Math.cos(current);
+                if(this.degreeMode){
+                    computation = Math.cos(current*Math.PI/180);
+                }else{
+                    computation = Math.cos(current);
+                }
                 break;
             case 'tan':
-                computation = Math.tan(current);
+                if(this.degreeMode){
+                    computation = Math.tan(current*Math.PI/180);
+                }else{
+                    computation = Math.tan(current);
+                }
                 break;
             case 'hyp':
                 computation = Math.hypot(current);
                 break;
             case 'sec':
-                computation = 1 / Math.cos(current);
+                if(this.degreeMode){
+                    computation = 1 / Math.cos(current*Math.PI/180);
+                }else{
+                    computation = 1 / Math.cos(current);
+                }
                 break;
             case 'csc':
-                computation = 1 / Math.sin(current);
+                if(this.degreeMode){
+                    computation = 1 / Math.sin(current*Math.PI/180);
+                }else{
+                    computation = 1 / Math.sin(current);
+                }
                 break;
             case 'cot':
-                computation = 1 / Math.tan(current);
+                if(this.degreeMode){
+                    computation = 1 / Math.tan(current*Math.PI/180);
+                }else{
+                    computation = 1 / Math.tan(current);
+                }
                 break;
             
             // function
@@ -350,6 +377,16 @@ feButton.onclick = ()=>{
     }
 }
 
+degButton.onclick = ()=>{
+    if(calculator.degreeMode){
+        degButton.innerText = "RAD";
+        calculator.degreeMode = false;
+    }else{
+        degButton.innerText = "DEG";
+        calculator.degreeMode = true;
+    }
+}
+
 powerCellButton.onclick = ()=>{
     turnOnPowerMode();
     if(calculator.powerMode){
@@ -413,6 +450,9 @@ memoryPlusButton.onclick = ()=>{
     if(localStorage.getItem('calculator-item') !== null){
         let memoryValue = Number(localStorage.getItem('calculator-item'));
         localStorage.setItem('calculator-item', memoryValue + current);
+    }else{
+        localStorage.setItem('calculator-item',current);
+        toggleClearAndReadButtons();
     }
 }
 
@@ -422,6 +462,9 @@ memoryMinusButton.onclick = ()=>{
     if(localStorage.getItem('calculator-item') !== null){
         let memoryValue = Number(localStorage.getItem('calculator-item'));
         localStorage.setItem('calculator-item', memoryValue - current);
+    }else{
+        localStorage.setItem('calculator-item',current);
+        toggleClearAndReadButtons();
     }
 }
 

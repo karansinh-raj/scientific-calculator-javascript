@@ -24,8 +24,6 @@
 body{
     height: 100vh;
     width: 100%;
-    padding-left: 5rem;
-    padding-right: 5rem;
     font-family: Helvetica, sans-serif;
     background-color: var(--backgroundColor);
 }
@@ -237,10 +235,9 @@ body{
 /* lower section cell or button */
 .lower-section td{
     width: calc(100%/5);
-    padding: 1.5rem;
+    padding: 1rem;
     background-color: var(--backgroundColor);
     box-shadow: 1px 1px 5px 0.1px var(--shadowColor);
-    border-radius: 0.5rem;
     text-align: center;
     justify-content: center;
     font-size: 1.5rem;
