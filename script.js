@@ -78,6 +78,11 @@ class Calculator{
 
     // returns current equation
     equationToExponential(){
+
+        if(this.lastComputed !== 0){
+            this.equation = this.lastComputed;
+        }
+
         if(this.feMode){
             this.equation = Number(this.equation).toFixed();
             this.feMode = false;
@@ -86,6 +91,8 @@ class Calculator{
             this.feMode = true;
         }
         outputText.innerText = this.equation;
+        this.lastComputed = this.equation;
+        this.equation = 0;
     }
 
     // append newly added number to equation
@@ -381,6 +388,12 @@ class Calculator{
 const calculator = new Calculator();
 
 numberButtons.forEach(button =>{
+
+    if(calculator.feMode){
+        calculator.feMode = false;
+        feButton.style.borderBottom = "none";
+    }
+
     button.addEventListener('click', ()=>{
         calculator.appendNumber(button.getAttribute('data-number'));
     });
@@ -403,12 +416,24 @@ signToggleButton.onclick = ()=>{
 }
 
 unaryOperationButtons.forEach(button =>{
+
+    if(calculator.feMode){
+        calculator.feMode = false;
+        feButton.style.borderBottom = "none";
+    }
+
     button.addEventListener('click', ()=>{
         calculator.unaryOperation(button.getAttribute('data-unary-operation'));
     });
 });
 
 directValueButtons.forEach(button =>{
+
+    if(calculator.feMode){
+        calculator.feMode = false;
+        feButton.style.borderBottom = "none";
+    }
+
     button.addEventListener('click', ()=>{
         calculator.printDirectValue(button.getAttribute('data-direct-value'));
     });
@@ -573,6 +598,12 @@ window.onclick = function(event) {
 
 // keyboard events
 window.addEventListener('keydown', (e)=>{
+
+    if(calculator.feMode){
+        calculator.feMode = false;
+        feButton.style.borderBottom = "none";
+    }
+
     if ((e.key >= 0 && e.key <= 9) || (e.key === "+" || e.key === "-" || e.key === "*" ||e.key === "/" || e.key === "%" || e.key === "." || e.key === "(" || e.key === ")")) { 
         calculator.appendNumber(e.key);
     }
