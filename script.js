@@ -93,19 +93,19 @@ class Calculator{
         // to prevent multiple zeroes
         if(this.equation === 0 && number === '0') return;
 
-        if((number === '+' || number === '-' || number === '*' || number === '/' || number === '%') && this.lastComputed !== 0){
+        if((number === '+' || number === '-' || number === '*' || number === '/' || number === '%' || number === '**') && this.lastComputed !== 0){
             this.equation = this.lastComputed;
             this.lastComputed = 0;
         }else{
             this.lastComputed = 0;
         }
 
-        if((number === '+' || number === '-' || number === '*' || number === '/' || number === '%') && this.isOperatorLegal === false){
+        if((number === '+' || number === '-' || number === '*' || number === '/' || number === '%' || number === '**') && this.isOperatorLegal === false){
             return;
         }
 
         // to allow decimal digits after operator
-        if((number === '+' || number === '-' || number === '*' || number === '/' || number === '%') && this.isOperatorLegal){
+        if((number === '+' || number === '-' || number === '*' || number === '/' || number === '%' || number === '**') && this.isOperatorLegal){
             this.isOperatorLegal = false;
             this.isDecimalLegal = true;
         }else{
@@ -126,7 +126,7 @@ class Calculator{
         }
 
         // append number to equation
-        if(this.equation === 0){
+        if(this.equation === 0 && !(number === '+' || number === '-' || number === '*' || number === '/' || number === '%' || number === '**')){
             this.equation = number;
         }else{
             this.equation += number;
@@ -142,6 +142,11 @@ class Calculator{
         try{
             let computation = eval(this.equation);
             equationText.innerText = `${this.equation} =`;
+
+            // checking for divide by zero error
+            if(computation === Infinity && this.equation.toString().includes('/')){
+                computation = 'Can not divide by zero';
+            }
             outputText.innerText = computation;
             this.lastComputed = computation;
             this.equation = 0;
@@ -155,6 +160,11 @@ class Calculator{
 
     // to toggle the sign of number
     signToggle(){
+        
+        if(this.lastComputed !== 0){
+            this.equation = this.lastComputed;
+        }
+
         let equationNumber = parseFloat(this.equation);
         if(equationNumber>0){
             this.equation = Math.abs(equationNumber)*-1;
@@ -162,10 +172,16 @@ class Calculator{
             this.equation = Math.abs(equationNumber);
         }
         outputText.innerText = this.equation;
+        this.lastComputed = this.equation;
     }
 
     // to compute the unary operations
     unaryOperation(operation){
+
+        if(this.lastComputed !== 0){
+            this.equation = this.lastComputed;
+        }
+
         if (this.equation === '') return;
         let computation;
 
@@ -259,7 +275,11 @@ class Calculator{
                 computation = Math.pow(current,2);
                 break;
             case '1/':
-                computation = 1 / current;
+                if(current!==0){
+                    computation = 1 / current;
+                }else{
+                    computation = 'Can not divide by zero';
+                }
                 break;
             case 'exp':
                 computation = current.toExponential();
@@ -278,14 +298,18 @@ class Calculator{
 
             // factorial
             case '!':
-                let factorial = (number)=>{
-                    let temp=1;
-                    for(let i=2; i<=number; i++){
-                        temp = temp*i;
+                if(current >= 0){
+                    let factorial = (number)=>{
+                        let temp=1;
+                        for(let i=2; i<=number; i++){
+                            temp = temp*i;
+                        }
+                        return temp;
                     }
-                    return temp;
+                    computation = factorial(current);
+                }else{
+                    computation = 'Invalid input';
                 }
-                computation = factorial(current);
                 break;
             default:
                 return;
@@ -293,8 +317,14 @@ class Calculator{
         equationText.innerText = `${operation}(${this.equation}) =`;
         outputText.innerText = computation;
 
-        this.lastComputed = computation;
-        this.equation = 0;
+        if(isNaN(computation)){
+            this.lastComputed = 0;
+            this.equation = 0;
+        }else{
+            this.lastComputed = computation;
+            this.equation = 0;
+        }
+        
     }
 
     // to print direct values of const like PI
@@ -312,6 +342,7 @@ class Calculator{
                 break;
         }
         this.equation = computation;
+        equationText.innerText = '';
         outputText.innerText = this.equation;
 
         this.lastComputed = computation;
@@ -323,6 +354,7 @@ class Calculator{
         this.equation = 0;
         this.isDecimalLegal = true;
         this.isOperatorLegal = true;
+        this.lastComputed = 0;
 
         equationText.innerText = '';
         outputText.innerText = this.equation;
@@ -428,12 +460,14 @@ function turnOnPowerMode(){
 
         document.getElementById('sqrtOrCuberoot').setAttribute('data-unary-operation',"cuberoot");
         document.getElementById('sqrtOrCuberoot').innerHTML = "&#8731;";
+        document.getElementById('sqrtOrCuberoot').style.padding = "0.5rem";
 
         document.getElementById('10RaiseXOr2RaiseX').setAttribute('data-unary-operation',"2^");
         document.getElementById('10RaiseXOr2RaiseX').innerHTML = "2<sup>x</sup>";
 
         document.getElementById('logOrERaiseX').setAttribute('data-unary-operation',"e^");
         document.getElementById('logOrERaiseX').innerHTML = "e<sup>x</sup>";
+        document.getElementById('logOrERaiseX').style.padding = "0.5rem";
 
         calculator.powerMode = true;
     }
@@ -536,6 +570,9 @@ window.onclick = function(event) {
 window.addEventListener('keydown', (e)=>{
     if ((e.key >= 0 && e.key <= 9) || (e.key === "+" || e.key === "-" || e.key === "*" ||e.key === "/" || e.key === "%" || e.key === "." || e.key === "(" || e.key === ")")) { 
         calculator.appendNumber(e.key);
+    }
+    if(e.key === "^"){
+        calculator.appendNumber('**');
     }
     if(e.key === "Enter"){
         calculator.compute();
