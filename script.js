@@ -148,7 +148,12 @@ class Calculator{
                 computation = 'Can not divide by zero';
             }
             outputText.innerText = computation;
-            this.lastComputed = computation;
+
+            if(isNaN(computation)){
+                this.lastComputed = 0;
+            }else{
+                this.lastComputed = computation;
+            }
             this.equation = 0;
 
         }catch(err){
