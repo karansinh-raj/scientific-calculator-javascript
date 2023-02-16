@@ -515,7 +515,7 @@ function turnOnPowerMode(){
 }
 
 memoryStoreButton.onclick = ()=>{
-    if(calculator.getEquation() !== ''){
+    if(calculator.getEquation() !== '' && !(isNaN(calculator.getEquation()))){
         if(calculator.getEquation() === 0){
             localStorage.setItem('calculator-item',calculator.getLastComputed());
         }else{
