@@ -76,6 +76,11 @@ class Calculator{
         return this.equation;
     }
 
+    // returns last computed value
+    getLastComputed(){
+        return this.lastComputed;
+    }
+
     // returns current equation
     equationToExponential(){
 
@@ -505,21 +510,33 @@ function turnOnPowerMode(){
 
 memoryStoreButton.onclick = ()=>{
     if(calculator.getEquation() !== ''){
-        localStorage.setItem('calculator-item',calculator.getEquation());
+        if(calculator.getEquation() === 0){
+            localStorage.setItem('calculator-item',calculator.getLastComputed());
+        }else{
+            localStorage.setItem('calculator-item',calculator.getEquation());
+        }
         toggleClearAndReadButtons();
     }
 }
 
 memoryReadButton.onclick = ()=>{
     if(localStorage.getItem('calculator-item') !== null){
-        calculator.clear();
+        if(!(calculator.getEquation().toString().includes('+') || calculator.getEquation().toString().includes('-') || calculator.getEquation().toString().includes('*') || calculator.getEquation().toString().includes('/') || calculator.getEquation().toString().includes('%') || calculator.getEquation().toString().includes('**'))){
+            calculator.clear();
+        }
         calculator.appendNumber(localStorage.getItem('calculator-item'));
     }
 }
 
 memoryPlusButton.onclick = ()=>{
-
-    const current = parseFloat(calculator.getEquation());
+    let current;
+    if(calculator.getEquation() !== ''){
+        if(calculator.getEquation() === 0){
+            current = parseFloat(calculator.getLastComputed());
+        }else{
+            current = parseFloat(calculator.getEquation());
+        }
+    }
     if(localStorage.getItem('calculator-item') !== null){
         let memoryValue = Number(localStorage.getItem('calculator-item'));
         localStorage.setItem('calculator-item', memoryValue + current);
@@ -530,8 +547,14 @@ memoryPlusButton.onclick = ()=>{
 }
 
 memoryMinusButton.onclick = ()=>{
-
-    const current = parseFloat(calculator.getEquation());
+    let current;
+    if(calculator.getEquation() !== ''){
+        if(calculator.getEquation() === 0){
+            current = parseFloat(calculator.getLastComputed());
+        }else{
+            current = parseFloat(calculator.getEquation());
+        }
+    }
     if(localStorage.getItem('calculator-item') !== null){
         let memoryValue = Number(localStorage.getItem('calculator-item'));
         localStorage.setItem('calculator-item', memoryValue - current);
