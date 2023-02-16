@@ -133,8 +133,14 @@ class Calculator{
             }
         }
 
-        if(number === ')' && !(this.equation.toString().includes('('))){
+        // same number of parenthesis
+        if(number === ')' && ((this.equation.toString().split(")").length - 1) >= (this.equation.toString().split("(").length - 1))){
             return;
+        }
+
+        // automatically add * if two parenthesis (1)(2) -> (1)*(2)
+        if(number === '(' && this.equation.toString().slice(-1) === ')'){
+            this.equation += '*';
         }
 
         // append number to equation
